@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "front",
+			"problemMatcher": [],
+			"label": "Development Server Frontend",
+			"detail": "next dev"
+		},
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "back",
+			"problemMatcher": [],
+			"label": "Development Server Backend",
+			"detail": "nodemon src/index.ts"
+		}
+	]
+}
