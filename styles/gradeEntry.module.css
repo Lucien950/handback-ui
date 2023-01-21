@@ -1,0 +1,15 @@
+.neuroRect{
+	transition: 0.3s box-shadow;
+	box-shadow:
+		8px 8px 14px 1px #00000000, 
+		-2px -2px 20px 4px #ffffff00,
+		inset 5px 5px 19px -10px #0000001a,
+		inset -5px -5px 19px -10px #ffffff1a; 
+}
+.neuroRect:hover {
+	box-shadow:
+		8px 8px 14px 1px #0000000f,
+		-2px -2px 20px 4px #ffffffa1,
+		inset 5px 5px 19px -10px #00000000,
+		inset -5px -5px 19px -10px #ffffff00;
+}

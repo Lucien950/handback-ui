@@ -6,4 +6,4 @@ interface files {
 	sizeBytes?: string
 }
 
-export { files }
+export type {files}

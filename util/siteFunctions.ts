@@ -1,15 +1,21 @@
 import { parse } from 'node-html-parser';
 import { HTMLElement } from "node-html-parser"
-import { files } from "./types";
+import { FileEntry } from "../types/types";
 
 const getSite = async (authorization: string, ubcNum: number, page: string) => {
 	const options = { method: 'GET', headers: { Authorization: authorization } };
-	const response = await fetch(`https://cs110.students.cs.ubc.ca/handback/${ubcNum}${page}`, options)
+	const url = `https://cs110.students.cs.ubc.ca/handback/${ubcNum}${page}`
+	// URL DEBUGGING
+	// console.log(url)
+	const response = await fetch(url, options)
+	if (!response.ok) {
+		throw "Page Response Error"
+	}
 	return parse(await response.text())
 }
 const getTableLinks = async (authorization: string, ubcNum: number, page: string) => {
 	const site = await getSite(authorization, ubcNum, page)
-	const tableRows = site.querySelectorAll("body table tr").slice(2, -1)
+	const tableRows = site.querySelectorAll("body table tr").slice(3, -1)
 	const links = tableRows.map(tableRow => {
 		const children: HTMLElement[] = tableRow.childNodes.map((e: any) => e.childNodes[0])
 		const [image, link, modified, size, description] = children
@@ -19,9 +25,19 @@ const getTableLinks = async (authorization: string, ubcNum: number, page: string
 			lastModified: modified.innerText != "&nbsp;" ? modified.innerText.trim() : undefined,
 			description: description.innerText != "&nbsp;" ? description.innerText.trim() : undefined,
 			sizeBytes: !["&nbsp;", "-"].includes(size.innerText.trim()) ? size.innerText.trim() : undefined,
-		} as files
+		} as FileEntry
 	})
 	return links
 }
 
-export { getTableLinks }
+const getFile = async(authorization: string, ubcNum: number, path: string, fileName: string)=>{
+	const options = { method: 'GET', headers: { Authorization: authorization } };
+	const url = `https://cs110.students.cs.ubc.ca/handback/${ubcNum}${path}/${fileName}`
+	const response = await fetch(url, options)
+	if (!response.ok) {
+		throw "Page Response Error"
+	}
+	return await response.text()
+}
+
+export { getTableLinks, getFile }
