@@ -115,7 +115,7 @@ export default function Home() {
 			return
 		}
 
-		const res = await fetch(`http://localhost:4000/auth?ubcNum=${studentNumber}`, {
+		const res = await fetch(`/api/auth?ubcNum=${studentNumber}`, {
 			headers: {
 				Authorization: authorization
 			}
@@ -130,7 +130,7 @@ export default function Home() {
 		const authHeaders = {
 			Authorization: localStorage.getItem("Authorization")!
 		}
-		const data = await fetch(`http://localhost:4000/getGrades?ubcNum=${localStorage.getItem("studentNumber")}`, {
+		const data = await fetch(`/api/getGrades?ubcNum=${localStorage.getItem("studentNumber")}`, {
 			headers: {
 				...authHeaders
 			}

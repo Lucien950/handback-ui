@@ -13,7 +13,7 @@ export default function Login(){
 		const authString = "Basic " + b64.toString("base64")
 		const studentNumber = (document.getElementById("studentNumber") as HTMLInputElement).value
 		console.log(authString, studentNumber)
-		const res = await fetch(`http://localhost:4000/auth?ubcNum=${studentNumber}`, {
+		const res = await fetch(`/api/auth?ubcNum=${studentNumber}`, {
 			headers:{
 				Authorization: authString
 			}
