@@ -1,8 +1,9 @@
 'use client';
 import { motion } from "framer-motion"
 import neuroMorph from "styles/neuroMorph.module.css"
-import { gradeResultInterface } from "types/gradeResult"
-const GradeEntry = ({ gradeResult }: { gradeResult: gradeResultInterface }) => {
+import { Grade } from "types/types";
+
+const GradeEntry = ({ gradeResult }: { gradeResult: Grade }) => {
 	const item = {
 		hidden: { opacity: 0, y: "70%" },
 		show: { opacity: 1, y: 0 }
@@ -20,10 +21,10 @@ const GradeEntry = ({ gradeResult }: { gradeResult: gradeResultInterface }) => {
 						<p className="text-2xl font-bold mb-2"> {gradeResult.name} </p>
 						<p className="text-normal">
 							<span className="mr-1">
-								{gradeResult.submissionDate.toLocaleDateString("en-CA", { dateStyle: "short" })}
+								{new Date(gradeResult.date).toLocaleDateString("en-CA", { dateStyle: "short" })}
 							</span>
 							<span>
-								{gradeResult.submissionDate.toLocaleTimeString("en-CA", { timeStyle: "short" })}
+								{new Date(gradeResult.date).toLocaleTimeString("en-CA", { timeStyle: "short" })}
 							</span>
 						</p>
 					</div>

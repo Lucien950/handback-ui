@@ -1,6 +1,5 @@
-'use client';
-import { useEffect, useState } from "react"
-
+'use client'
+import {useState, useEffect} from "react"
 const GradeChart = ({ grade }: { grade: number }) => {
 	const [gradeAnimated, setGradeAnimated] = useState(false)
 	useEffect(() => {
@@ -43,3 +42,5 @@ const GradeChart = ({ grade }: { grade: number }) => {
 		</div>
 	)
 }
+
+export default GradeChart

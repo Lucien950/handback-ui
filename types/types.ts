@@ -9,10 +9,10 @@ interface FileEntry {
 interface Grade{
 	name: string,
 	grade: number,
-	date: Date,
+	date: string,
 	handInFilePath: string,
 	gradeReportPath: string,
-	cooldown: Date,
+	cooldown: string,
 }
 
 export type { FileEntry, Grade}

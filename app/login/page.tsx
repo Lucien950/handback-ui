@@ -8,7 +8,7 @@ export default function Login(){
 	const [loginLoading, setLoginLoading] = useState(false)
 	const handleLogin: FormEventHandler<HTMLFormElement> = async (e)=>{
 		e.preventDefault()
-		console.log()
+		setLoginLoading(true)
 
 		const b64 = window.btoa(`${(document.getElementById("username") as HTMLInputElement).value}:${(document.getElementById("password") as HTMLInputElement).value}`)
 		const authString = `Basic ${b64}`
@@ -23,10 +23,7 @@ export default function Login(){
 			setLoginLoading(false)
 			return
 		}
-
-		window.localStorage.setItem("Authorization", authString)
-		window.localStorage.setItem("studentNumber", studentNumber)
-		router.push("/")
+		router.push("/dashboard")
 	}
 	return (
 		<div className="grid place-items-center h-screen">
@@ -39,11 +36,9 @@ export default function Login(){
 				<input className="block p-2 focus:outline-none focus:ring rounded-md border-2 mb-4" type="password" name="password" id="password" placeholder="Password" />
 				
 				<button type="submit" className="relative p-2 border-2 w-full">
+					<span className={"" + (loginLoading && "invisible")}>Login</span>
 					{
-						!loginLoading
-						?
-						<span>Login</span>
-						:
+						loginLoading &&
 						<Oval height={20} width={20} wrapperClass="absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%]"/>
 					}
 				</button>
