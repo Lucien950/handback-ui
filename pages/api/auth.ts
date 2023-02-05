@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import adminMiddleWare from 'util/adminMiddleWare'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+	console.log("reached auth")
 	const { ubcNum, authorization } = adminMiddleWare(req, res)
 	if(!(ubcNum && authorization)) return
 	// console.log(res.locals.authorization, res.locals.ubcNum)

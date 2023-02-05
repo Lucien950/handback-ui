@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+'use client';
+import { useRouter } from 'next/navigation';
 import { FormEventHandler, useState } from "react";
 import { Oval } from "react-loader-spinner";
 
@@ -9,8 +10,8 @@ export default function Login(){
 		e.preventDefault()
 		console.log()
 
-		const b64 = Buffer.from(`${(document.getElementById("username") as HTMLInputElement).value}:${(document.getElementById("password") as HTMLInputElement).value}`)
-		const authString = "Basic " + b64.toString("base64")
+		const b64 = window.btoa(`${(document.getElementById("username") as HTMLInputElement).value}:${(document.getElementById("password") as HTMLInputElement).value}`)
+		const authString = `Basic ${b64}`
 		const studentNumber = (document.getElementById("studentNumber") as HTMLInputElement).value
 		console.log(authString, studentNumber)
 		const res = await fetch(`/api/auth?ubcNum=${studentNumber}`, {
