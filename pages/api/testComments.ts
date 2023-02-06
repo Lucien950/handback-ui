@@ -1,7 +1,7 @@
 
-import { parseGradingFile } from "util/fileParsing";
+import { parseGradingFile } from "util/scraping/fileParsing";
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getFile } from "util/siteFunctions";
+import { getFile } from "util/scraping/siteFunctions";
 import adminMiddleWare from "util/adminMiddleWare";
 
 // testing for individual assignment

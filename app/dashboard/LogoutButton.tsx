@@ -1,9 +1,10 @@
 'use client';
+import { deleteAuthCookie } from "util/authCookieHandling";
 import { useRouter } from "next/navigation";
 const LogOutButton = ()=>{
 	const router = useRouter()
 	const handleLogout = () => {
-		document.cookie = "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+		deleteAuthCookie()
 		router.push("/login")
 	}
 	return(

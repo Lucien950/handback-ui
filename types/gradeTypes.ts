@@ -15,4 +15,10 @@ interface Grade{
 	cooldown: string,
 }
 
-export type { FileEntry, Grade}
+interface GradesPackage {
+	lectures: Grade[];
+	psets: Grade[];
+	labs: Grade[];
+}
+
+export type { FileEntry, Grade, GradesPackage }

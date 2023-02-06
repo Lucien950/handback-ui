@@ -1,7 +1,7 @@
 'use client';
 import { motion } from "framer-motion"
 import neuroMorph from "styles/neuroMorph.module.css"
-import { Grade } from "types/types";
+import { Grade } from "types/gradeTypes";
 
 const GradeEntry = ({ gradeResult }: { gradeResult: Grade }) => {
 	const item = {

@@ -1,8 +1,8 @@
-import { FileEntry, Grade } from 'types/types';
-import { parseGradingFileSummary } from 'util/fileParsing';
-import { getFile, getTableLinks } from 'util/siteFunctions';
+import { FileEntry, Grade, GradesPackage } from 'types/gradeTypes';
+import { parseGradingFileSummary } from 'util/scraping/fileParsing';
+import { getFile, getTableLinks } from 'util/scraping/siteFunctions';
 
-export default async (ubcNum: number, authorization: string) => {
+export default async (ubcNum: number, authorization: string): Promise<GradesPackage> => {
 	const final = {
 		lectures: [] as Grade[],
 		psets: [] as Grade[],

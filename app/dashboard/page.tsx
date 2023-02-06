@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 // utils
 import { authUtil } from 'pages/api/auth';
-import getGrades from 'util/getGrades';
+import getGrades from 'util/scraping/getGrades';
 // client components
 import GradeChart from "./GradeChart"
 import GradesList from "./GradesList";

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Grade } from "types/types";
+import { Grade } from "types/gradeTypes";
 import GradeEntry from "./GradeEntry";
 
 const GradesList = ({ grades }: { grades: Grade[] })=>{

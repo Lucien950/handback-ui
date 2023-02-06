@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import adminMiddleWare from 'util/adminMiddleWare'
-import { getTableLinks } from 'util/siteFunctions'
+import { getTableLinks } from 'util/scraping/siteFunctions'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 	const { ubcNum, authorization } = adminMiddleWare(req, res)

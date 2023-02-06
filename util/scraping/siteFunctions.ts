@@ -1,6 +1,6 @@
 import { parse } from 'node-html-parser';
 import { HTMLElement } from "node-html-parser"
-import { FileEntry } from "../types/types";
+import { FileEntry } from "../../types/gradeTypes";
 
 const getSite = async (authorization: string, ubcNum: number, page: string) => {
 	const options = { method: 'GET', headers: { Authorization: authorization } };
