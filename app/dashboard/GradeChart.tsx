@@ -15,10 +15,10 @@ const GradeChart = ({ grade }: { grade: number }) => {
 				<g id="Layer_1">
 					{/* stroke */}
 					<circle
-						className="fill-none stroke-[#A2A2A2] stroke-[79.1694]"
+						className="fill-none stroke-[#A2A2A2] stroke-[80]"
 						cx="250" cy="250" r="150"
 						style={{
-							filter: `drop-shadow(-${offset}px -${offset}px 20px rgba(255,255,255,0.15)) drop-shadow(${offset}px ${offset}px 20px rgba(0,0,0,0.07))`
+							filter: "drop-shadow(11px 11px 26px #8a8a8a) drop-shadow(-11px -11px 26px #bababa);"
 						}}
 					/>
 

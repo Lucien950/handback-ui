@@ -1,6 +1,8 @@
+// helpers
+import { getFile, getTableLinks } from './siteFunctions';
+import { parseGradingFileSummary } from './fileParsing';
+// types
 import { FileEntry, Grade, GradesPackage } from 'types/gradeTypes';
-import { parseGradingFileSummary } from 'util/scraping/fileParsing';
-import { getFile, getTableLinks } from 'util/scraping/siteFunctions';
 
 export default async (ubcNum: number, authorization: string): Promise<GradesPackage> => {
 	const final = {
@@ -14,6 +16,7 @@ export default async (ubcNum: number, authorization: string): Promise<GradesPack
 		const assignments: FileEntry[] = await getTableLinks(authorization, ubcNum, `/${s}`)
 		const grades: Grade[] = await Promise.all(assignments.map(async assignment => {
 			const gradeReportsHandins = await getTableLinks(authorization, ubcNum, `/${s}/${assignment.path}`)
+			// get the latest handin and grade report file
 			const latestHandIn = gradeReportsHandins.filter(grhi => grhi.name.indexOf("handin") != -1).reverse()[0]
 			const latestGradeReport = gradeReportsHandins.filter(grhi => grhi.name.indexOf("grading-report") != -1).reverse()[0]
 

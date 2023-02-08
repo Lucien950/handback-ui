@@ -8,6 +8,7 @@ import getGrades from 'util/scraping/getGrades';
 import GradeChart from "./GradeChart"
 import GradesList from "./GradesList";
 import LogOutButton from './LogoutButton';
+import { COOKIENAME } from 'util/authCookieHandling';
 
 interface CoolDown{
 	name: string,
@@ -15,11 +16,11 @@ interface CoolDown{
 }
 export default async function Dashboard() {
 	// auth
-	const authCookie = cookies().get('Authorization')
+	const authCookie = cookies().get(COOKIENAME)
 	if (!authCookie){
 		redirect("/login")
 	}
-	const [authorization, studentNumberStr] = authCookie!.value.split("/")
+	const [authorization, studentNumberStr] = authCookie.value.split("/")
 	const studentNumber = parseInt(studentNumberStr)
 	if (!authorization || !studentNumber) {
 		redirect("/login")
@@ -48,9 +49,9 @@ export default async function Dashboard() {
 		})
 
 	return (
-		<div className="flex flex-col min-h-screen">
+		<div className="flex flex-col min-h-screen relative">
 			{/* HEADER */}
-			<div className="w-full bg-[#A2A2A2]">
+			<div className="w-full bg-[#A2A2A2] sticky top-0 z-10">
 				<div className="container mx-auto flex flex-row justify-between items-center">
 					<GradeChart grade={overallGrade}/>
 					<div className="bg-white p-4">
@@ -75,11 +76,7 @@ export default async function Dashboard() {
 			
 			{/* CONTENT */}
 			<div className="bg-slate-200 flex-1">
-				<div className="grid grid-cols-3 container mx-auto pt-8 gap-x-8 ">
-					<div>
-						<h1 className="text-3xl font-bold mb-3">Lecture</h1>
-						<GradesList grades={lectures}/>
-					</div>
+				<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 container mx-auto pt-8 gap-x-8 px-4 md:px-0">
 					<div>
 						<h1 className="text-3xl font-bold mb-3">Problem Sets</h1>
 						<GradesList grades={psets} />
@@ -87,6 +84,10 @@ export default async function Dashboard() {
 					<div>
 						<h1 className="text-3xl font-bold mb-3">Labs</h1>
 						<GradesList grades={labs} />
+					</div>
+					<div>
+						<h1 className="text-3xl font-bold mb-3">Lecture</h1>
+						<GradesList grades={lectures}/>
 					</div>
 				</div>
 			</div>

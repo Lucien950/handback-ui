@@ -1,3 +1,4 @@
+/* elavated position */
 .neuroRect{
 	--rising-edge: 0.1s;
 	--falling-edge: 0.1s;
@@ -5,15 +6,17 @@
 
 	transition: var(--rising-edge) box-shadow linear;
 	box-shadow:
-		8px 8px 14px 1px #00000000, 
-		-2px -2px 20px 4px #ffffff00; 
+			7px 7px 14px #d4dae200,
+			-7px -7px 14px #f0f6fe00;
 }
 .neuroRect:hover {
 	transition-delay: calc(var(--falling-edge) + var(--hold-time));
 	box-shadow:
-		8px 8px 14px 1px #0000000f,
-		-2px -2px 20px 4px #ffffffa1;
+		7px 7px 14px #d4dae2,
+		-7px -7px 14px #f0f6fe;
 }
+
+/* natural position */
 .neuroRectBack{
 	position: absolute;
 	left: 0;
@@ -22,20 +25,19 @@
 	height: 100%;
 	border-radius: inherit;
 	
-	box-shadow:
-		inset 5px 5px 19px -10px #0000001a,
-		inset -5px -5px 19px -10px #ffffff1a;
+	box-shadow: inset 7px 7px 14px #d4dae2,
+		inset -7px -7px 14px #f0f6fe;
 	z-index: -1;
 
 	transition: box-shadow var(--falling-edge) linear calc(var(--rising-edge) + var(--hold-time));
 }
 .neuroRect:hover .neuroRectBack{
 	transition-delay: 0ms;
-	box-shadow:
-		inset 5px 5px 19px -10px #00000000,
-		inset -5px -5px 19px -10px #ffffff00;
+	box-shadow: inset 7px 7px 14px #d4dae200,
+			inset -7px -7px 14px #f0f6fe00;
 }
 
+/* scaling */
 .neuroRect .neuroRectContent{
 	transition: transform 0.4s ease;
 	transform: scale(99%);
