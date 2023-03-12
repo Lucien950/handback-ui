@@ -37,7 +37,7 @@ export default function LoginForm(){
 				<span className={"" + (loginLoading && "invisible")}>Login</span>
 				{
 					loginLoading &&
-					<Oval height={20} width={20} wrapperClass="absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%]" />
+					<Oval height={20} width={20} wrapperClass="absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%]" strokeWidth={8}/>
 				}
 			</button>
 		</form>

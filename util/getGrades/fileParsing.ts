@@ -25,6 +25,13 @@ const parseGradingFileSummary = (data: string) => {
 		throw "Auto Grading Grade line not found"
 	}
 	const autoGradingLine = importants[autoGradingLineIndex]
+	if(!autoGradingLine){
+		return {
+			grade: -1,
+			gradeTotal: 1,
+			coolDownLine: undefined
+		}
+	}
 	const [uninterestingtext, stringGrade, gradeToalString] = autoGradingLine?.split(/ {2,}/)
 	const gradeTotalMatches = gradeToalString.match(/\d{1,3}/)
 	if (!stringGrade || !gradeTotalMatches) {

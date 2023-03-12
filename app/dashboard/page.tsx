@@ -3,12 +3,13 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 // utils
 import { authUtil } from 'pages/api/auth';
-import getGrades from 'util/scraping/getGrades';
+import getGrades from 'util/getGrades';
 // client components
 import GradeChart from "./GradeChart"
 import GradesList from "./GradesList";
 import LogOutButton from './LogoutButton';
 import { COOKIENAME } from 'util/authCookieHandling';
+import auth from 'types/auth';
 
 interface CoolDown{
 	name: string,
@@ -20,12 +21,14 @@ export default async function Dashboard() {
 	if (!authCookie){
 		redirect("/login")
 	}
-	const [authorization, studentNumberStr] = authCookie.value.split("/")
-	const studentNumber = parseInt(studentNumberStr)
-	if (!authorization || !studentNumber) {
+	const [authorization, ubcNumStr] = authCookie.value.split("/")
+	const ubcNum = parseInt(ubcNumStr)
+	if (!authorization || !ubcNum) {
 		redirect("/login")
 	}
-	const { responseOK } = await authUtil(studentNumber, authorization)
+
+	const auth: auth = { authorization, ubcNum }
+	const { responseOK } = await authUtil(auth)
 	if (!responseOK) {
 		cookies().clear()
 		redirect("/login")
@@ -33,12 +36,20 @@ export default async function Dashboard() {
 	// end auth
 
 	// grades
-	const { lectures, psets, labs} = await getGrades(studentNumber, authorization)
+	const { lectures, psets, labs } = await getGrades(auth)
+	console.log(lectures, psets, labs)
 
 	// grade metadata
 	const allGrades = [...lectures, ...psets, ...labs]
-	const total = allGrades.reduce((a, l) => a + l.grade, 0)
-	const overallGrade = total / allGrades.length
+	let drops = 0
+	const total = allGrades.reduce((a, l) => {
+		if(l.grade == -100){
+			drops += 1
+			return a
+		}
+		return a + l.grade
+	}, 0)
+	const overallGrade = total / (allGrades.length - drops)
 	const activeCoolDowns = allGrades
 		.filter(l => (new Date(l.date).getTime() - (new Date()).getTime()) > 0)
 		.map(l => {

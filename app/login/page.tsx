@@ -8,7 +8,10 @@ export default async function Login(){
 	const authCookie = cookies().get(COOKIENAME)
 	if (authCookie){
 		const [authorization, studentNumberStr] = authCookie.value.split("/")
-		if (await authUtil(parseInt(studentNumberStr), authorization)){
+		const auth = {
+			authorization, ubcNum: parseInt(studentNumberStr)
+		}
+		if (await authUtil(auth)){
 			redirect("/dashboard")
 		}
 	}

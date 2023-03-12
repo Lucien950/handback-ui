@@ -29,7 +29,7 @@ const GradeEntry = ({ gradeResult }: { gradeResult: Grade }) => {
 						</p>
 					</div>
 					<div>
-						<p className="text-2xl text-right"> {gradeResult.grade} </p>
+						<p className="text-2xl text-right"> {gradeResult.grade != -100 ? gradeResult.grade : "N/A"} </p>
 						<div className="flex flex-row">
 							<a href={`https://cs110.students.cs.ubc.ca/handback/${83986398}` + gradeResult.handInFilePath} title="Handin File" className="focus:outline-none group">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" className="w-8 h-8 transition-[fill] duration-150 fill-slate-500 group-hover:fill-slate-700 group-focus:fill-slate-900">

@@ -27,7 +27,7 @@ const GradeChart = ({ grade }: { grade: number }) => {
 						className="fill-none stroke-[#008500] stroke-[50] transition-[stroke-dasharray] duration-[800ms] delay-[300ms] rotate-[-135deg] origin-center"
 						cx="250" cy="250" r="150"
 						style={{
-							strokeDasharray: `${gradeAnimated ? 975 * grade / 100 : 0}px 9999px`,
+							strokeDasharray: `${gradeAnimated ? 943 * grade / 100 : 0}px 9999px`,
 						}}
 					/>
 				</g>
